@@ -6,25 +6,38 @@
   <name>CHVotifierListener</name>
   <description>A listener for votifier, but in CH</description>
      <repositories>
-        <repository>
+        <!-- repository>
             <id>project.local</id>
             <name>Project Repository</name>
             <url>file:${project.basedir}/lib</url>
-        </repository>
+        </repository -->
         
         <repository>
             <id>sk89q-mvn2</id>
             <url>http://mvn2.sk89q.com/repo</url>
         </repository>
+        
+        <repository>
+            <id>onarandombox</id>
+            <url>http://repo.onarandombox.com/content/groups/public/</url>
+        </repository>
      </repositories>
      <dependencies>
-        <dependency>
+        <!-- dependency>
             <groupId>Votifier</groupId>
             <artifactId>Votifier</artifactId>
             <version>1.9</version>
             <scope>system</scope>
             <optional>true</optional>
             <systemPath>${project.basedir}/lib/Votifier.jar</systemPath>
+        </dependency -->
+        
+        <dependency>
+            <groupId>com.vexsoftware</groupId>
+            <artifactId>votifier</artifactId>
+            <version>1.8</version>
+            <type>jar</type>
+            <scope>compile</scope>
         </dependency>
         
         <dependency>
