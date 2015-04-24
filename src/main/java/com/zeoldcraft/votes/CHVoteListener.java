@@ -1,48 +1,52 @@
 package com.zeoldcraft.votes;
 
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
-
-import com.laytonsmith.annotations.shutdown;
-import com.laytonsmith.annotations.startup;
+import com.laytonsmith.PureUtilities.SimpleVersion;
+import com.laytonsmith.PureUtilities.Version;
 import com.laytonsmith.commandhelper.CommandHelperPlugin;
-import com.laytonsmith.core.CHLog;
 import com.laytonsmith.core.Static;
-import com.laytonsmith.core.CHLog.Tags;
 import com.laytonsmith.core.constructs.Target;
 import com.laytonsmith.core.events.Driver;
 import com.laytonsmith.core.events.EventUtils;
 import com.laytonsmith.core.exceptions.ConfigRuntimeException;
+import com.laytonsmith.core.extensions.AbstractExtension;
 import com.vexsoftware.votifier.model.VotifierEvent;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 
-public class CHVoteListener implements Listener {
+import java.util.logging.Level;
 
-	protected static CHVoteListener vl;
-	
-	@startup
-	public static void register() {
+public class CHVoteListener extends AbstractExtension implements Listener {
+
+	protected CHVoteListener vl;
+
+	@Override
+	public void onStartup() {
 		try {
-			CHLog.GetLogger().d(Tags.EXTENSIONS, "Checking for Votifier", Target.UNKNOWN);
+			Static.getLogger().log(Level.INFO, "Checking for Votifier");
 			Static.checkPlugin("Votifier", Target.UNKNOWN);
 			if (vl == null)
 				vl = new CHVoteListener();
-			CommandHelperPlugin.self.registerEvent(vl);
-			CHLog.GetLogger().d(Tags.EXTENSIONS, "Vote event registered", Target.UNKNOWN);
+			CommandHelperPlugin.self.registerEvents(vl);
+			Static.getLogger().log(Level.INFO, "Vote event registered");
 		} catch (ConfigRuntimeException e) {
 			CommandHelperPlugin.self.getLogger().warning(e.getMessage());
 		}
 	}
-	
-	@shutdown
-	public static void unregister() {
+
+	@Override
+	public void onShutdown() {
 		VotifierEvent.getHandlerList().unregister(vl);
-		CHLog.GetLogger().d(Tags.EXTENSIONS, "vote event unregistered", Target.UNKNOWN);
+		Static.getLogger().log(Level.INFO, "Vote event unregistered.");
 	}
 	
 	@EventHandler(priority=EventPriority.LOWEST)
 	public void onVoteReceived(VotifierEvent event) {
-		CHLog.GetLogger().d(Tags.EXTENSIONS, "vote event occured", Target.UNKNOWN);
+		Static.getLogger().log(Level.INFO, "Vote event occurred.");
 		EventUtils.TriggerListener(Driver.EXTENSION, "vote_received", new CHVoteEvent(event));
+	}
+
+	public Version getVersion() {
+		return new SimpleVersion(1, 0, 1);
 	}
 }

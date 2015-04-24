@@ -1,7 +1,5 @@
 package com.zeoldcraft.votes;
 
-import java.util.Map;
-
 import com.laytonsmith.PureUtilities.Version;
 import com.laytonsmith.annotations.api;
 import com.laytonsmith.core.CHVersion;
@@ -19,6 +17,8 @@ import com.laytonsmith.core.exceptions.EventException;
 import com.laytonsmith.core.exceptions.PrefilterNonMatchException;
 import com.laytonsmith.core.functions.Exceptions.ExceptionType;
 import com.vexsoftware.votifier.model.Vote;
+
+import java.util.Map;
 
 public class VoteEvent {
 
@@ -45,7 +45,7 @@ public class VoteEvent {
 			return false;
 		}
 
-		public BindableEvent convert(CArray manualObject) {
+		public BindableEvent convert(CArray cArray, Target target) {
 			throw new ConfigRuntimeException("This operation is not supported", ExceptionType.BindException, Target.UNKNOWN);
 		}
 
