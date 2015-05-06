@@ -9,6 +9,7 @@ import com.laytonsmith.core.events.Driver;
 import com.laytonsmith.core.events.EventUtils;
 import com.laytonsmith.core.exceptions.ConfigRuntimeException;
 import com.laytonsmith.core.extensions.AbstractExtension;
+import com.laytonsmith.core.extensions.MSExtension;
 import com.vexsoftware.votifier.model.VotifierEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -16,6 +17,7 @@ import org.bukkit.event.Listener;
 
 import java.util.logging.Level;
 
+@MSExtension("CHVotifierListener")
 public class CHVoteListener extends AbstractExtension implements Listener {
 
 	protected CHVoteListener vl;
