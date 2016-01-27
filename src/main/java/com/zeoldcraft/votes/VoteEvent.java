@@ -12,10 +12,9 @@ import com.laytonsmith.core.events.BindableEvent;
 import com.laytonsmith.core.events.Driver;
 import com.laytonsmith.core.events.Prefilters;
 import com.laytonsmith.core.events.Prefilters.PrefilterType;
-import com.laytonsmith.core.exceptions.ConfigRuntimeException;
+import com.laytonsmith.core.exceptions.CRE.CREBindException;
 import com.laytonsmith.core.exceptions.EventException;
 import com.laytonsmith.core.exceptions.PrefilterNonMatchException;
-import com.laytonsmith.core.functions.Exceptions.ExceptionType;
 import com.vexsoftware.votifier.model.Vote;
 
 import java.util.Map;
@@ -46,7 +45,7 @@ public class VoteEvent {
 		}
 
 		public BindableEvent convert(CArray cArray, Target target) {
-			throw new ConfigRuntimeException("This operation is not supported", ExceptionType.BindException, Target.UNKNOWN);
+			throw new CREBindException("This operation is not supported", Target.UNKNOWN);
 		}
 
 		public Map<String, Construct> evaluate(BindableEvent event) throws EventException {
