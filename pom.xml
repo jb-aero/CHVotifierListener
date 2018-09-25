@@ -1,52 +1,42 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.zeoldcraft</groupId>
+  <groupId>io.github.jbaero</groupId>
   <artifactId>CHVotifierListener</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
   <name>CHVotifierListener</name>
   <description>A listener for votifier, but in CH</description>
+
      <repositories>
-        <repository>
-            <id>project.local</id>
-            <name>Project Repository</name>
-            <url>file:${project.basedir}/lib</url>
-        </repository>
-        
         <repository>
             <id>sk89q-mvn2</id>
             <url>http://mvn2.sk89q.com/repo</url>
         </repository>
-        
+         <repository>
+             <id>parallelblock-public</id>
+             <name>ParallelBlock Public Repository</name>
+             <url>https://repo.parallelblock.com/repository/maven-public/</url>
+         </repository>
         <!-- <repository>
             <id>onarandombox</id>
             <url>http://repo.onarandombox.com/content/groups/public/</url>
         </repository> -->
      </repositories>
+
      <dependencies>
-        <dependency>
-            <groupId>Votifier</groupId>
-            <artifactId>Votifier</artifactId>
-            <version>1.9</version>
-            <scope>system</scope>
-            <optional>true</optional>
-            <systemPath>${project.basedir}/lib/Votifier.jar</systemPath>
-        </dependency>
-        
-        <!-- dependency>
-            <groupId>com.vexsoftware</groupId>
-            <artifactId>votifier</artifactId>
-            <version>1.8</version>
-            <type>jar</type>
-            <scope>compile</scope>
-        </dependency -->
-        
         <dependency>
             <groupId>com.sk89q</groupId>
             <artifactId>commandhelper</artifactId>
-            <version>3.3.2-SNAPSHOT</version>
+            <version>3.3.3-SNAPSHOT</version>
             <type>jar</type>
         </dependency>
+         <dependency>
+             <groupId>com.vexsoftware</groupId>
+             <artifactId>nuvotifier-universal</artifactId>
+             <version>2.4.2-SNAPSHOT</version>
+             <scope>provided</scope>
+         </dependency>
     </dependencies>
+
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
     <plugins>

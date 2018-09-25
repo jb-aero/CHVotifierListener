@@ -1,4 +1,4 @@
-package com.zeoldcraft.votes;
+package io.github.jbaero.votes;
 
 import com.laytonsmith.PureUtilities.SimpleVersion;
 import com.laytonsmith.PureUtilities.Version;
@@ -44,11 +44,11 @@ public class CHVoteListener extends AbstractExtension implements Listener {
 	
 	@EventHandler(priority=EventPriority.LOWEST)
 	public void onVoteReceived(VotifierEvent event) {
-		Static.getLogger().log(Level.INFO, "Vote event occurred.");
+		Static.getLogger().log(Level.FINE, "Vote event occurred.");
 		EventUtils.TriggerListener(Driver.EXTENSION, "vote_received", new CHVoteEvent(event));
 	}
 
 	public Version getVersion() {
-		return new SimpleVersion(1, 0, 1);
+		return new SimpleVersion(1, 0, 3);
 	}
 }

@@ -1,4 +1,4 @@
-package com.zeoldcraft.votes;
+package io.github.jbaero.votes;
 
 import com.laytonsmith.PureUtilities.Version;
 import com.laytonsmith.annotations.api;

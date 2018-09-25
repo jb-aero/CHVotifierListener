@@ -1,4 +1,4 @@
-package com.zeoldcraft.votes;
+package io.github.jbaero.votes;
 
 import com.laytonsmith.core.events.BindableEvent;
 import com.vexsoftware.votifier.model.Vote;
