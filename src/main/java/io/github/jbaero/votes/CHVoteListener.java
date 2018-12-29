@@ -49,6 +49,6 @@ public class CHVoteListener extends AbstractExtension implements Listener {
 	}
 
 	public Version getVersion() {
-		return new SimpleVersion(1, 0, 3);
+		return new SimpleVersion(2, 0, 0);
 	}
 }

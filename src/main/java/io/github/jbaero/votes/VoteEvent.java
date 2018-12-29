@@ -1,11 +1,10 @@
 package io.github.jbaero.votes;
 
+import com.laytonsmith.PureUtilities.SimpleVersion;
 import com.laytonsmith.PureUtilities.Version;
 import com.laytonsmith.annotations.api;
-import com.laytonsmith.core.CHVersion;
 import com.laytonsmith.core.constructs.CArray;
 import com.laytonsmith.core.constructs.CString;
-import com.laytonsmith.core.constructs.Construct;
 import com.laytonsmith.core.constructs.Target;
 import com.laytonsmith.core.events.AbstractEvent;
 import com.laytonsmith.core.events.BindableEvent;
@@ -15,6 +14,7 @@ import com.laytonsmith.core.events.Prefilters.PrefilterType;
 import com.laytonsmith.core.exceptions.CRE.CREBindException;
 import com.laytonsmith.core.exceptions.EventException;
 import com.laytonsmith.core.exceptions.PrefilterNonMatchException;
+import com.laytonsmith.core.natives.interfaces.Mixed;
 import com.vexsoftware.votifier.model.Vote;
 
 import java.util.Map;
@@ -36,7 +36,7 @@ public class VoteEvent {
 					+ " {}";
 		}
 
-		public boolean matches(Map<String, Construct> prefilter, BindableEvent e) throws PrefilterNonMatchException {
+		public boolean matches(Map<String, Mixed> prefilter, BindableEvent e) throws PrefilterNonMatchException {
 			if (e instanceof CHVoteEvent) {
 				Prefilters.match(prefilter, "service", ((CHVoteEvent) e).getVote().getServiceName(), PrefilterType.MACRO);
 				return true;
@@ -48,9 +48,9 @@ public class VoteEvent {
 			throw new CREBindException("This operation is not supported", Target.UNKNOWN);
 		}
 
-		public Map<String, Construct> evaluate(BindableEvent event) throws EventException {
+		public Map<String, Mixed> evaluate(BindableEvent event) throws EventException {
 			if (event instanceof CHVoteEvent) {
-				Map<String, Construct> ret = evaluate_helper(event);
+				Map<String, Mixed> ret = evaluate_helper(event);
 				Vote vote = ((CHVoteEvent) event).getVote();
 				Target t = Target.UNKNOWN;
 				ret.put("address", new CString(vote.getAddress(), t));
@@ -67,7 +67,7 @@ public class VoteEvent {
 			return Driver.EXTENSION;
 		}
 
-		public boolean modifyEvent(String key, Construct value, BindableEvent event) {
+		public boolean modifyEvent(String key, Mixed value, BindableEvent event) {
 			if (event instanceof CHVoteEvent) {
 				Vote vote = ((CHVoteEvent) event).getVote();
 				if (key.equals("username")) {
@@ -91,7 +91,7 @@ public class VoteEvent {
 		}
 
 		public Version since() {
-			return CHVersion.V3_3_1;
+			return new SimpleVersion(1, 0, 0);
 		}
 	}
 }
